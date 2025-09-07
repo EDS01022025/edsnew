@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gear Up Car Parts</title>
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+
+  
+  <nav class="navbar">
+    <div class="nav-container">
+    
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.html.jpg" alt="Website Logo">
+          <span>Gear Up</span>
+        </a>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section aria-label="About Car Parts" class="about-section" id="section-about">
+    <h2 class="section-title">About Car Parts</h2>
+    <p class="section-description">
+      Welcome to Gear Up, your trusted source for high-quality automotive
+      components. We specialize in providing durable, reliable, and affordable
+      car parts to keep your vehicle running smoothly.
+    </p>
+
+    <div class="cards" role="list">
+   
+      <article class="card" role="listitem">
+        <img src="Engine parts.jpg" alt="Engine Parts">
+        <div class="card-content">
+          <h3 class="card-title">Engine Parts</h3>
+          <p class="card-text">High-performance engine components.</p>
+          <button class="btn learn-more" 
+            data-title="Engine Parts" 
+            data-items='[
+              {"src":"engine block with pistons.webp","desc":"Engine block with pistons"},
+              {"src":"high-performance turbocharger.jpg","desc":"High-performance turbocharger"},
+              {"src":"Engine crankshaft close-up.jpg","desc":"Engine crankshaft close-up"},
+              {"src":"Set of spark plugs.webp","desc":"Set of spark plugs"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+      <article class="card" role="listitem">
+        <img src="Brake-system.jpg" alt="Brake System">
+        <div class="card-content">
+          <h3 class="card-title">Brake Systems</h3>
+          <p class="card-text">Reliable brake components.</p>
+          <button class="btn learn-more" 
+            data-title="Brake Systems" 
+            data-items='[
+              {"src":"Disc brake close-up.jpg","desc":"Disc brake close-up"},
+              {"src":"Brake pads and calipers.webp","desc":"Brake pads and calipers"},
+              {"src":"Hydraulic brake system.jpg","desc":"Hydraulic brake system"},
+              {"src":"ABS system unit.jpg","desc":"ABS system unit"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+      
+      <article class="card" role="listitem">
+        <img src="suspesion-parts.jpg" alt="Suspension Parts">
+        <div class="card-content">
+          <h3 class="card-title">Suspension Parts</h3>
+          <p class="card-text">Quality suspension components.</p>
+          <button class="btn learn-more" 
+            data-title="Suspension Parts" 
+            data-items='[
+              {"src":"Shock absorbers set.jpg","desc":"Shock absorbers set"},
+              {"src":"Suspension coil springs.jpg","desc":"Suspension coil springs"},
+              {"src":"Control arms.jpg","desc":"Control arms"},
+              {"src":"Suspension struts.webp","desc":"Suspension struts"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+     
+      <article class="card" role="listitem">
+        <img src="electric parts.jpeg" alt="Electrical Parts">
+        <div class="card-content">
+          <h3 class="card-title">Electrical Parts</h3>
+          <p class="card-text">Advanced electrical components.</p>
+          <button class="btn learn-more" 
+            data-title="Electrical Parts" 
+            data-items='[
+              {"src":"Car battery.jpg","desc":"Car battery"},
+              {"src":"Wiring harness.jpeg","desc":"Wiring harness"},
+              {"src":"Alternator unit.jpg","desc":"Alternator unit"},
+              {"src":"ECU module.webp","desc":"ECU module"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+     
+      <article class="card" role="listitem">
+        <img src="car accessories.jpg" alt="Car Accessories">
+        <div class="card-content">
+          <h3 class="card-title">Car Accessories</h3>
+          <p class="card-text">Stylish and functional accessories.</p>
+          <button class="btn learn-more" 
+            data-title="Car Accessories" 
+            data-items='[
+              {"src":"Leather seat covers.webp","desc":"Leather seat covers"},
+              {"src":"Custom floor mats.webp","desc":"Custom floor mats"},
+              {"src":"LED interior lights.jpg","desc":"LED interior lights"},
+              {"src":"Steering wheel cover.webp","desc":"Steering wheel cover"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-items" id="modalItems"></div>
+    </div>
+  </div>
+
+ 
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalItems = document.getElementById("modalItems");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeModal = document.getElementById("closeModal");
+
+ 
+    document.querySelectorAll(".learn-more").forEach(button => {
+      button.addEventListener("click", () => {
+        const title = button.getAttribute("data-title");
+        const items = JSON.parse(button.getAttribute("data-items"));
+        modalTitle.textContent = title;
+        modalItems.innerHTML = items.map(item => `
+          <div class="modal-item">
+            <img src="${item.src}" alt="Car Part">
+            <p class="modal-desc">${item.desc}</p>
+          </div>
+        `).join("");
+        modal.style.display = "flex";
+      });
+    });
+
+   
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+  
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".modal-item img")) {
+        const img = e.target.cloneNode();
+        img.classList.add("enlarged");
+        document.body.appendChild(img);
+        img.addEventListener("click", () => img.remove());
+      }
+    });
+  </script>
+</body>
+</html>

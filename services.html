@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gear Up - Services</title>
+  <link rel="stylesheet" href="services.css">
+</head>
+<body>
+
+ 
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.html.jpg" alt="Website Logo">
+          <span>Gear Up</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <section aria-label="Services offered" class="about-section" id="section-service">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-description">
+      We offer a wide range of services to support your automotive needs,
+      from expert installation to custom modifications. Our team is dedicated
+      to providing top-notch service with a focus on quality and customer satisfaction.
+    </p>
+
+    <div class="cards" role="list">
+     
+      <article class="card" role="listitem">
+        <img src="installetion service.jpg" alt="Installation Service">
+        <div class="card-content">
+          <h3 class="card-title">Installation Service</h3>
+          <p class="card-text">Professional installation of all car parts by certified technicians.</p>
+          <button class="btn learn-more" 
+            data-title="Installation Service" 
+            data-items='[
+              {"src":"Engine parts being installed.png","desc":"Engine parts being installed"},
+              {"src":"Technician working on car.jpg","desc":"Technician working on car"},
+              {"src":"New exhaust installation.webp","desc":"New exhaust installation"},
+              {"src":"Wheels mounted and balanced.webp","desc":"Wheels mounted and balanced"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+      
+      <article class="card" role="listitem">
+        <img src="Custom modification.jpg" alt="Custom Modifications">
+        <div class="card-content">
+          <h3 class="card-title">Custom Modifications</h3>
+          <p class="card-text">Tailored modifications to enhance performance and style.</p>
+          <button class="btn learn-more" 
+            data-title="Custom Modifications" 
+            data-items='[
+              {"src":"Custom alloy wheels.jpg","desc":"Custom alloy wheels"},
+              {"src":"Sports exhaust upgrade.jpeg","desc":"Sports exhaust upgrade"},
+              {"src":"Lowered suspension setup.jpg","desc":"Lowered suspension setup"},
+              {"src":"Wide body kit installation.jpg","desc":"Wide body kit installation"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+   
+      <article class="card" role="listitem">
+        <img src="maintenance.jpeg" alt="Maintenance & Repair">
+        <div class="card-content">
+          <h3 class="card-title">Maintenance & Repair</h3>
+          <p class="card-text">Comprehensive maintenance and repair services to keep your car in top shape.</p>
+          <button class="btn learn-more" 
+            data-title="Maintenance & Repair" 
+            data-items='[
+              {"src":"Oil change service.jpg","desc":"Oil change service"},
+              {"src":"Brake replacement.jpg","desc":"Brake replacement"},
+              {"src":"Engine check-up.jpg","desc":"Engine check-up"},
+              {"src":"Transmission repair.jpg","desc":"Transmission repair"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+      
+      <article class="card" role="listitem">
+        <img src="diagnostics-services.jpg" alt="Diagnostic Services">
+        <div class="card-content">
+          <h3 class="card-title">Diagnostic Services</h3>
+          <p class="card-text">Advanced diagnostics to quickly identify and solve vehicle issues.</p>
+          <button class="btn learn-more" 
+            data-title="Diagnostic Services" 
+            data-items='[
+              {"src":"OBD scanner in use.jpg","desc":"OBD scanner in use"},
+              {"src":"Engine diagnostic check.jpg","desc":"Engine diagnostic check"},
+              {"src":"Electrical diagnostics.jpg","desc":"Electrical diagnostics"},
+              {"src":"Computerized system scan.jpg","desc":"Computerized system scan"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+
+      
+      <article class="card" role="listitem">
+        <img src="consultation.jpg" alt="Parts Consultation">
+        <div class="card-content">
+          <h3 class="card-title">Parts Consultation</h3>
+          <p class="card-text">Expert advice to help you choose the right parts for your vehicle.</p>
+          <button class="btn learn-more" 
+            data-title="Parts Consultation" 
+            data-items='[
+              {"src":"Customer consultation.jpg","desc":"Customer consultation"},
+              {"src":"Parts catalog demonstration.jpg","desc":"Parts catalog demonstration"},
+              {"src":"Explaining performance upgrades.webp","desc":"Explaining performance upgrades"},
+              {"src":"Recommending OEM parts.jpg","desc":"Recommending OEM parts"}
+            ]'>Learn More</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-items" id="modalItems"></div>
+    </div>
+  </div>
+
+ 
+  <script>
+    const modal = document.getElementById("imageModal");
+    const modalItems = document.getElementById("modalItems");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeModal = document.getElementById("closeModal");
+
+ 
+    document.querySelectorAll(".learn-more").forEach(button => {
+      button.addEventListener("click", () => {
+        const title = button.getAttribute("data-title");
+        const items = JSON.parse(button.getAttribute("data-items"));
+        modalTitle.textContent = title;
+        modalItems.innerHTML = items.map(item => `
+          <div class="modal-item">
+            <img src="${item.src}" alt="Car Service">
+            <p class="modal-desc">${item.desc}</p>
+          </div>
+        `).join("");
+        modal.style.display = "flex";
+      });
+    });
+
+   
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+   
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    });
+
+   
+    document.addEventListener("click", (e) => {
+      if (e.target.closest(".modal-item img")) {
+        const img = e.target.cloneNode();
+        img.classList.add("enlarged");
+        document.body.appendChild(img);
+        img.addEventListener("click", () => img.remove());
+      }
+    });
+  </script>
+</body>
+</html>
